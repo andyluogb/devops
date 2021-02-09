@@ -1,0 +1,346 @@
+
+https://www.youtube.com/watch?v=KS5vRZPLo6c
+
+ 
+
+du -sh .
+
+df -hT
+
+diff -rq /netezza/nz_tmp_s /netezza/nz_tmp_m
+
+ps -aux |grep aaa
+
+ 
+
+ls -ld $(find .)
+
+ls -ltd $(find .)
+
+find . -type f
+
+ 
+
+awk '{t+=$5} END {print t}'                                             
+
+ awk '{sum += $3} END {print sum}'
+
+
+  awk '{print $0}'
+
+ 
+
+  
+
+  xargs -l COMMAND < file
+
+ 
+
+xargs -l ls -l >> /tmp/andy/fileLists2  < /tmp/andy/fileLists
+
+ 
+
+ 
+
+ps -Ao user,uid,comm,pid,pcpu,tty --sort=-pcpu | head -n5
+
+ 
+
+====if you want to have both stderr and output displayed on the console and in a file use this:
+
+ 
+
+SomeCommand 2>&1 | tee SomeFile.txt
+
+ 
+
+perl -pi -e 's/\r\n/\n/g' prod.conf
+
+ 
+
+ 
+
+========Task: Convert Dos TO Unix Using tr Command
+
+Type the following command:
+
+ 
+
+tr -d '\r' < input.file > output.file
+
+Task: Convert Dos TO Unix Using Perl One Liner
+
+Type the following command:
+
+ 
+
+perl -pi -e 's/\r\n/\n/g' input.file
+
+Task: Convert UNIX to DOS format using sed command
+
+Type the following command if you are using bash shell:
+
+$ sed 's/$'"/`echo \\\r`/" input.txt > output.txt
+
+ 
+
+Note: sed version may not work under different UNIX/Linux variant,refer your local sed man page for more info.
+
+ 
+
+Task: Convert DOS newlines (CR/LF) to Unix format using sed command
+
+If you are using BASH shell type the following command (press Ctrl-V then Ctrl-M to get pattern or special symbol)
+
+$ sed 's/^M$//' input.txt > output.txt
+
+ 
+
+ 
+
+ 
+
+perl -pi -e 's/>/>\n/g' schema.xml
+
+ 
+
+ 
+
+spark-shell --master yarn --deploy-mode client --files /tmp/nz-aws/log4j.properties --conf "spark.executor.extraJavaOptions='-Dlog4j.configuration=log4j.properties'" --driver-java-options "-Dlog4j.configuration=file:/tmp/nz-aws/log4j_driver.properties"
+
+ 
+
+spark-shell --master yarn --deploy-mode client --files /tmp/nz-aws/log4j.properties --conf "spark.executor.extraJavaOptions='-Dlog4j.configuration=log4j.properties'" --driver-java-options "-Dlog4j.configuration=file:/tmp/nz-aws/log4j_driver.properties"
+
+ 
+
+ 
+
+spark-shell --master yarn --deploy-mode client --files ./log4j.properties --conf "spark.executor.extraJavaOptions='-Dlog4j.configuration=log4j.properties'" --driver-java-options "-Dlog4j.configuration=file:./log4j_driver.properties"
+
+ 
+
+spark-submit --conf "spark.driver.extraJavaOptions=-Dfile.encoding=utf-8"
+
+ 
+
+ 
+
+curl http://.. /latest/meta-data/
+
+ 
+
+cat /mnt/var/lib/info/job-flow.json
+
+hdfs haadmin -getAllServiceState
+
+aws emr describe-cluster --cluster-id j-3UR1L7V9F0G2Z --region ca-central-1
+
+ 
+
+ 
+
+aws s3api list-object-versions --bucket mybucket  --output json --query 'DeleteMarkers[?LastModified>=`2019-10-09T05:29:16` && IsLatest==`true`].[Key,VersionId]' | jq -r '.[] |  "--key '\''" + .[0] +  "'\'' --version-id " + .[1]' |  xargs -L1 echo "aws s3api delete-object --bucket mybucket"
+
+ 
+
+ 
+
+aws s3api list-object-versions --bucket bucket name --prefix test  --output json --query 'DeleteMarkers[?LastModified>=`2019-10-09T05:29:16` && IsLatest==`true`].[Key,VersionId]' | jq -r '.[] |  "--key '\''" + .[0] +  "'\'' --version-id " + .[1]' |  xargs -L1 echo "aws s3api delete-object --bucket --bucket bucket name --prefix test"
+
+ 
+
+aws s3api list-object-versions --bucket mybucket  --output json --query 'DeleteMarkers[?LastModified>=`2020-07-17T13:00:00` && IsLatest==`true`].[Key,VersionId]' | jq -r '.[] |  "--key '\''" + .[0] +  "'\'' --version-id " + .[1]' |  xargs -L1 echo "aws s3api delete-object --bucket mybucket"
+
+ 
+
+ 
+
+ 
+
+aws s3api list-object-versions --bucket bucket name --prefix test  --output json --query 'DeleteMarkers[?LastModified>=`2019-10-09T05:29:16` && IsLatest==`true`].[Key,VersionId]' | jq -r '.[] |  "--key '\''" + .[0] +  "'\'' --version-id " + .[1]' |  xargs -L1 echo "aws s3api delete-object --bucket --bucket bucket name --prefix test"
+
+ 
+
+ 
+
+hdfs haadmin -getServiceState
+
+initctl list                                              Netstat -tulnap | grep 50070
+
+ 
+
+ ====================================================================================
+ --driver-memory 120g \
+
+--executor-memory 15g \
+
+--executor-cores 5 \
+
+--spark.sql.shuffle.partitions=2000 \
+
+--spark.shuffle.io.preferDirectBufs=false
+
+ 
+
+spark-submit \
+
+--driver-java-options "-XX:+UseG1GC -XX:InitiatingHeapOccupancyPercent=35 -Dlog4j.configuration=file:./log4j_driver.properties" \
+
+--class com.bmo.idp.migration.Main \
+
+--master yarn \
+
+--deploy-mode client \
+
+--driver-memory 80g \
+
+--executor-memory 9g \
+
+--executor-cores 3 \
+
+--files file:/apps/idp_deployment/NZtoAWS/log4j.properties \
+
+--conf spark.executor.extraJavaOptions="-XX:+UseG1GC -XX:InitiatingHeapOccupancyPercent=35 -Dlog4j.configuration=file:log4j.properties" \
+
+--conf spark.network.timeout=3600s \
+
+--conf spark.executor.heartbeatInterval=20s \
+
+--conf spark.dynamicAllocation.enabled=true \
+
+--conf spark.shuffle.io.connectionTimeout=3600s \
+
+--conf spark.shuffle.io.retryWait=10s \
+
+--conf spark.shuffle.io.maxRetries=10 \
+
+--conf spark.rpc.numRetries=10 \
+
+--conf spark.rpc.message.maxSize=2047 \
+
+--conf spark.files.maxPartitionBytes=134217728 \
+
+--conf spark.serializer=org.apache.spark.serializer.KryoSerializer \
+
+--conf spark.blacklist.enabled=true \
+
+--conf spark.dynamicAllocation.enabled=true \
+
+--conf spark.dynamicAllocation.executorIdleTimeout=60s \
+
+s3://aws-prd01-cac1-idpdlake-deployment/idp_deployment/NZtoAWS/Netezza_Archival_Tool_2.11-1.5.7.8-jar-with-dependencies.jar \
+
+./prod_l1.conf production > logs/app_l1.log
+
+ 
+
+ 
+
+spark-submit \
+
+--driver-java-options "-XX:+UseG1GC -XX:InitiatingHeapOccupancyPercent=35 -Dlog4j.configuration=file:./log4j_driver.properties" \
+
+--class com.bmo.idp.migration.Main \
+
+--master yarn \
+
+--deploy-mode client \
+
+--driver-memory 80g \
+
+--executor-memory 9g \
+
+--executor-cores 3 \
+
+--files file:/apps/idp_deployment/NZtoAWS/log4j.properties \
+
+--conf spark.executor.extraJavaOptions="-XX:+UseG1GC -XX:InitiatingHeapOccupancyPercent=35 -Dlog4j.configuration=file:log4j.properties" \
+
+--conf spark.network.timeout=3600s \
+
+--conf spark.executor.heartbeatInterval=20s \
+
+--conf spark.shuffle.io.connectionTimeout=3600s \
+
+--conf spark.shuffle.io.retryWait=10s \
+
+--conf spark.shuffle.io.maxRetries=10 \
+
+--conf spark.speculation=true \
+
+--conf spark.speculation.interval=3000ms \
+
+--conf spark.speculation.multiplier=4 \
+
+--conf spark.rpc.numRetries=10 \
+
+--conf spark.rpc.message.maxSize=2047 \
+
+--conf spark.files.maxPartitionBytes=134217728 \
+
+--conf spark.serializer=org.apache.spark.serializer.KryoSerializer \
+
+s3://aws-prd01-cac1-idpdlake-deployment/idp_deployment/NZtoAWS/Netezza_Archival_Tool_2.11-1.5.7.8-jar-with-dependencies.jar \
+
+./prod_l3.conf production > logs/app_l3.log
+
+ 
+
+ 
+
+ 
+
+spark-submit \
+
+--driver-java-options "-XX:+UseG1GC -XX:InitiatingHeapOccupancyPercent=35 -Dlog4j.configuration=file:./log4j_driver.properties" \
+
+--class com.bmo.idp.migration.Main \
+
+--master local[81] \
+
+--driver-memory 200g \
+
+--executor-memory 9g \
+
+--executor-cores 3 \
+
+--files file:/apps/idp_deployment/NZtoAWS/log4j.properties \
+
+--conf spark.executor.extraJavaOptions="-XX:+UseG1GC -XX:InitiatingHeapOccupancyPercent=35 -Dlog4j.configuration=file:log4j.properties" \
+
+--conf spark.network.timeout=3600s \
+
+--conf spark.shuffle.io.connectionTimeout=3600s \
+
+--conf spark.shuffle.io.retryWait=10s \
+
+--conf spark.shuffle.io.maxRetries=10 \
+
+--conf spark.speculation=true \
+
+--conf spark.speculation.interval=3000ms \
+
+--conf spark.speculation.multiplier=4 \
+
+--conf spark.rpc.numRetries=10 \
+
+--conf spark.rpc.message.maxSize=2047 \
+
+--conf spark.files.maxPartitionBytes=134217728 \
+
+--conf spark.serializer=org.apache.spark.serializer.KryoSerializer \
+
+--conf spark.hadoop.dfs.client.block.write.replace-datanode-on-failure.enable=false \
+
+--conf spark.sql.autoBroadcastJoinThreshold=-1 \
+
+s3://aws-prd01-cac1-idpdlake-deployment/idp_deployment/NZtoAWS/Netezza_Archival_Tool_2.11-1.5.7.8-jar-with-dependencies.jar \
+
+./prod_rerun_l1.conf production > logs/app.log
+
+ 
+
+ 
+
+ 
