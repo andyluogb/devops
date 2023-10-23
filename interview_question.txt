@@ -1,0 +1,67 @@
+Scala
+1. Can you tell us how you use scala
+2. Describe one way to use traits, abstract class
+3. What is one use case for a companion object
+4. How do you add 2 option of integer
+5. How do Null, Nil None and Nothing differ in Scala
+6. How do you use scanLeft, foldLeft and reduceLeft in Scala
+7. What is the differnece of Monoid and Monad
+8. If you have a List[Option[String]] and call flatMap on the list, what is the result
+9. What is the difference of covariance, contravariance and invariance
+10. How do you handle excetion in Scala
+
+Java
+1. What is the differences between List, Set, Map
+2. Can you explain how id HashMap inplemented? What is the underlying datastructures used inside hashmap
+3. Can you explain how hashcode and equals are used in hashmap implementation
+4. Can you explain what is TreeMap? What is the differences with HashMap
+5. How is Memory bening managed in Java
+6. Can you explain how JVM heap is divided into
+7. How cause memory leak
+8. Can you tell what are available GarbageCollector in Java and what is the situation to use them
+    SerialGC, ParallelGC, ConcurrentMarkSweepGC, G1GC
+9. What is the differences between Runnale and Callable interface
+10. If you have a try catch finally block, is the finally block guranteed to be always executed? Why	
+11. Don’t use ThreadLocal.set(null) to clear the value.	
+
+
+AWS:
+1.Define and explain the three basic types of cloud services and the AWS products that are built based on them?
+The three basic types of cloud services are: Computing Storage Networking
+Here are some of the AWS products that are built based on the three cloud service types:
+Computing - These include EC2, Elastic Beanstalk, Lambda, Auto-Scaling, and Lightsat.
+Storage - These include S3, Glacier, Elastic Block Storage, Elastic File System.
+Networking - These include VPC, Amazon CloudFront, Route53
+2. On an EC2 instance, an application of yours is active. Once the CPU usage on your instance hits 80%, you must reduce the load on it. What strategy do you use to complete the task?
+3. What services can be used to create a centralized logging solution?
+The essential services that you can use are Amazon CloudWatch Logs, store them in Amazon S3, and then use Amazon Elastic Search to visualize them. You can use Amazon Kinesis Firehose to move the data from Amazon S3 to Amazon ElasticSearch.
+4. With specified private IP addresses, can an Amazon Elastic Compute Cloud (EC2) instance be launched? If so, which Amazon service makes it possible?
+5. What is the difference between a Spot Instance, an On-demand Instance, and a Reserved Instance?
+Spot instances are unused EC2 instances that users can use at a reduced cost.
+When you use on-demand instances, you must pay for computing resources without making long-term obligations.
+Reserved instances, on the other hand, allow you to specify attributes such as instance type, platform, tenancy, region, and availability zone. 
+Reserved instances offer significant reductions and capacity reservations when instances in certain availability zones are used.
+6. What are the different types of EC2 instances based on their costs?
+The three types of EC2 instances are:
+On-demand Instance
+It is cheap for a short time but not when taken for the long term
+Spot Instance
+It is less expensive than the on-demand instance and can be bought through bidding. 
+Reserved Instance
+If you are planning to use an instance for a year or more, then this is the right one for you.
+7.What are some critical differences between AWS S3 and EBS?
+Here are some differences between AWS S3 and EBS
+    Paradigm; Performance; Redundancy; Security
+S3: Object Store; Fast; Across Data Center; Using Public/Private Key
+EBS: File System, super Fast, within a data center; Can be used only within EC2
+8.How Do Amazon Rds, Dynamodb, and Redshift Differ from Each Other?
+9.How is AWS CloudFormation different from AWS Elastic Beanstalk?
+Here are some differences between AWS CloudFormation and AWS Elastic Beanstalk:
+AWS CloudFormation helps you provision and describe all of the infrastructure resources that are present in your cloud environment. 
+On the other hand, AWS Elastic Beanstalk provides an environment that makes it easy to deploy and run applications in the cloud.
+AWS CloudFormation supports the infrastructure needs of various types of applications, like legacy applications and existing enterprise applications. 
+On the other hand, AWS Elastic Beanstalk is combined with the developer tools to help you manage the lifecycle of your applications.
+10.  Can you give me some examples of where to use the AWS Cloud Development Kit?
+11. Is it possible to test an AWS Cloud Development Kit application locally before deploying it to the cloud?
+12. What languages are supported by the AWS Cloud Development Kit? How do they compare to each other?
+The AWS Cloud Development Kit currently supports four languages: Java, JavaScript, Python, and TypeScript. 
