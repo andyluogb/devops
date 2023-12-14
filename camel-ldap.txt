@@ -53,4 +53,33 @@ Make sure to replace the placeholder values (your-ldap-server, ou=users,dc=examp
 When using Camel 3.x with Spring Boot, this configuration will be picked up automatically from application.yml or application.properties. Ensure that your project has the necessary dependencies in the pom.xml file, including Camel 3.x, Spring Boot, and any other required libraries.
 
 Adjust the YAML configuration and Camel route based on your specific LDAP requirements and the structure of your Camel application.
-  
+
+
+
+User
+<bean id="ldapserver" class="javax.naming.directory.InitialDirContext" scope="prototype">
+  <constructor-arg>
+    <props>
+      <prop key="java.naming.factory.initial">com.sun.jndi.ldap.LdapCtxFactory</prop>
+      <prop key="java.naming.provider.url">ldap://localhost:10389</prop>
+      <prop key="java.naming.security.authentication">none</prop>
+    </props>
+  </constructor-arg>
+</bean>
+
+ldapserver:
+  class: javax.naming.directory.InitialDirContext
+  scope: prototype
+  constructor-arg:
+    props:
+      java.naming.factory.initial: com.sun.jndi.ldap.LdapCtxFactory
+      java.naming.provider.url: ldap://localhost:10389
+      java.naming.security.authentication: none
+
+
+In YAML:
+
+bean id becomes the top-level key (ldapserver).
+class, scope, and constructor-arg are used as keys under ldapserver.
+Properties inside <props> in XML are represented as a nested mapping under props in YAML. Each prop key-value pair is preserved.
+You can integrate this YAML configuration into your Spring context as needed. Adjust it according to the specific requirements and structure of your application.
