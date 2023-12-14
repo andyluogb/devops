@@ -83,3 +83,45 @@ bean id becomes the top-level key (ldapserver).
 class, scope, and constructor-arg are used as keys under ldapserver.
 Properties inside <props> in XML are represented as a nested mapping under props in YAML. Each prop key-value pair is preserved.
 You can integrate this YAML configuration into your Spring context as needed. Adjust it according to the specific requirements and structure of your application.
+
+
+
+import org.apache.camel.builder.RouteBuilder;
+
+public class LdapRouteExample extends RouteBuilder {
+
+    @Override
+    public void configure() throws Exception {
+        from("direct:start")
+            .to("ldap:ldap://your-ldap-server:389?base=ou=users,dc=example,dc=com&filter=(uid=jdoe)&scope=SUBTREE")
+            .to("log:output");
+    }
+}
+
+In this example:
+
+base: Specifies the base DN (Distinguished Name) where the LDAP search will start. In this case, it's set to ou=users,dc=example,dc=com.
+filter: Specifies the LDAP search filter. In this case, it's set to (uid=jdoe), meaning it will search for entries where the uid attribute is equal to "jdoe."
+scope: Specifies the scope of the search. Possible values are OBJECT, ONELEVEL, or SUBTREE. In this case, it's set to SUBTREE for a subtree search.
+Adjust the values of your-ldap-server, ou=users,dc=example,dc=com, (uid=jdoe), and the LDAP server details based on your specific LDAP configuration.
+
+Ensure you have the necessary Camel LDAP dependencies in your project's dependencies. If you're using Maven, you can include the following dependency in your pom.xml:
+
+<dependency>
+    <groupId>org.apache.camel</groupId>
+    <artifactId>camel-ldap-starter</artifactId>
+    <version>3.x.x</version>
+</dependency>
+
+
+    private void processLdapResponse(final Ldif ldif) {
+        // Implement your custom logic to process the LDAP response (ldif) here
+        // You can access attributes, DN, etc., from the ldif object
+        // For example:
+        String dn = ldif.getDn().toString();
+        System.out.println("Processing LDAP response for DN: " + dn);
+    }
+
+
+
+
