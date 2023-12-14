@@ -1,0 +1,56 @@
+In Apache Camel version 3.x, the configuration approach is a bit different compared to earlier versions. Camel 3.x introduced a simplified and unified configuration model. Below is an example of configuring LDAP settings using Camel 3.x with Spring Boot and YAML:
+camel:
+  component:
+    ldap:
+      configuration:
+        baseEnvironmentProperties:
+          java.naming.factory.initial: com.sun.jndi.ldap.LdapCtxFactory
+          java.naming.provider.url: ldap://your-ldap-server:389
+          java.naming.security.authentication: simple
+          java.naming.security.principal: your-username
+          java.naming.security.credentials: your-password
+
+# Camel route configuration
+camel:
+  routes:
+    - id: ldap-route
+      from: direct:start
+      to: ldap:ldap://your-ldap-server:389?base=ou=users,dc=example,dc=com&filter=(uid=jdoe)
+      to: log:output
+
+In this YAML configuration:
+
+The LDAP configuration is specified under camel.component.ldap.configuration.
+The Camel route is defined under camel.routes.
+Make sure to replace the placeholder values (your-ldap-server, ou=users,dc=example,dc=com, etc.) with your actual LDAP server configuration.
+
+In your Spring Boot application class, you can have the same structure as mentioned in the previous response:
+
+camel:
+  component:
+    ldap:
+      configuration:
+        url: ldap://your-ldap-server:389
+        base: ou=users,dc=example,dc=com
+        securityAuthentication: simple
+        securityPrincipal: your-username
+        securityCredentials: your-password
+
+# Camel route configuration
+camel:
+  routes:
+    - id: ldap-route
+      from: direct:start
+      to: ldap:configuration
+      to: log:output
+
+In this YAML configuration:
+
+The LDAP configuration is specified under camel.component.ldap.configuration. Adjust the properties based on your LDAP server settings.
+The Camel route is defined with a from endpoint (direct:start) and a to endpoint (ldap:configuration). The configuration value corresponds to the camel.component.ldap.configuration configuration.
+Make sure to replace the placeholder values (your-ldap-server, ou=users,dc=example,dc=com, etc.) with your actual LDAP server configuration.
+
+When using Camel 3.x with Spring Boot, this configuration will be picked up automatically from application.yml or application.properties. Ensure that your project has the necessary dependencies in the pom.xml file, including Camel 3.x, Spring Boot, and any other required libraries.
+
+Adjust the YAML configuration and Camel route based on your specific LDAP requirements and the structure of your Camel application.
+  
