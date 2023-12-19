@@ -1,0 +1,65 @@
+When connecting to SQL Server using Windows Authentication from a Linux server, you'll need to use the jTDS JDBC driver, as it supports Windows Authentication. Here's an example of how you can modify the Java code to connect to SQL Server with Windows Authentication on Linux:
+
+Download jTDS JDBC Driver:
+
+Download the jTDS JDBC driver from the official website: jTDS - SQL Server and Sybase JDBC driver.
+Copy the JAR File:
+
+Copy the downloaded JAR file (e.g., jtds-x.x.x.jar) to a location on your Linux machine.
+
+https://sourceforge.net/projects/jtds/
+
+<dependency>
+    <groupId>net.sourceforge.jtds</groupId>
+    <artifactId>jtds</artifactId>
+    <version>1.2.2</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/net.sourceforge.jtds/jtds -->
+<dependency>
+    <groupId>net.sourceforge.jtds</groupId>
+    <artifactId>jtds</artifactId>
+    <version>1.3.1</version>
+</dependency>
+https://mvnrepository.com/artifact/net.sourceforge.jtds/jtds/1.3.1
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class SqlServerJdbcExample {
+    public static void main(String[] args) {
+        String jdbcUrl = "jdbc:jtds:sqlserver://<server>:<port>/<database>;domain=<domain>;useNTLMv2=true";
+        Class.forName("net.sourceforge.jtds.jdbc.Driver");
+        try (Connection connection = DriverManager.getConnection(jdbcUrl)) {
+            // Do something with the connection
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM your_table");
+
+            // Process the result set
+            while (resultSet.next()) {
+                // Handle each row of the result set
+                // Example: String columnValue = resultSet.getString("column_name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+The driver class for the jTDS JDBC driver is net.sourceforge.jtds.jdbc.Driver. 
+
+mvn install:install-file -Dfile=jtds-x.x.x.jar -DgroupId=net.sourceforge.jtds -DartifactId=jtds -Dversion=x.x.x -Dpackaging=jar
+<dependency>
+    <groupId>net.sourceforge.jtds</groupId>
+    <artifactId>jtds</artifactId>
+    <version>x.x.x</version>
+</dependency>
+
+mvn clean install
+
+
+https://stackoverflow.com/questions/18450854/connecting-to-a-mssql-server-using-ldap-on-ubuntu-linux
+
+
+
+
