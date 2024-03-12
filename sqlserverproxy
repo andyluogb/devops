@@ -35,3 +35,24 @@ public class AzureSqlConnectionWithProxyExample {
         }
     }
 }
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class AzureSqlConnectionExample {
+    public static void main(String[] args) {
+        String connectionString = "jdbc:jtds:sqlserver://<server_name>:1433/<database_name>;instance=<instance_name>;proxyHost=<proxy_host>;proxyPort=<proxy_port>;domain=<domain>;user=<username>;password=<password>";
+        try (Connection connection = DriverManager.getConnection(connectionString)) {
+            System.out.println("Connected to Azure SQL Database via proxy!");
+        } catch (SQLException e) {
+            System.err.println("Failed to connect to Azure SQL Database via proxy: " + e.getMessage());
+        }
+    }
+}
+
+
+
+
+
+
